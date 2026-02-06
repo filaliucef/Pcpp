@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partager un Document - PCPP</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <i class="fas fa-dna"></i>
+                <span>PCPP</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Accueil</a></li>
+                <li><a href="notes.html" class="nav-link">Cours & Notes</a></li>
+                <li><a href="upload.html" class="nav-link active">Partager</a></li>
+                <li id="auth-links">
+                    <a href="login.html" class="nav-link btn-login">Connexion</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Upload Section -->
+    <section class="upload-section">
+        <div class="container">
+            <h1 class="page-title"><i class="fas fa-upload"></i> Partager un Document</h1>
+            
+            <!-- Not Logged In Message -->
+            <div id="not-logged" class="not-logged hidden">
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle"></i>
+                    <p>Vous devez être <a href="login.html">connecté</a> pour partager un document.</p>
+                </div>
+            </div>
+
+            <!-- Upload Form -->
+            <div id="upload-form-container" class="upload-form-container">
+                <div class="upload-type-selector">
+                    <button class="type-btn active" onclick="selectType('pdf')" id="btn-pdf">
+                        <i class="fas fa-file-pdf"></i> PDF
+                    </button>
+                    <button class="type-btn" onclick="selectType('note')" id="btn-note">
+                        <i class="fas fa-sticky-note"></i> Note Texte
+                    </button>
+                </div>
+
+                <form id="upload-form" onsubmit="handleUpload(event)">
+                    <div class="form-group">
+                        <label for="upload-title">Titre du document *</label>
+                        <input type="text" id="upload-title" placeholder="Ex: Cours de Physiologie - Chapitre 1" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="upload-matiere">Matière *</label>
+                        <select id="upload-matiere" required>
+                            <option value="">Sélectionnez une matière</option>
+                            <option value="Physiologie">Physiologie</option>
+                            <option value="Biochimie">Biochimie</option>
+                            <option value="Biologie Cellulaire">Biologie Cellulaire</option>
+                            <option value="Physiopathologie">Physiopathologie</option>
+                            <option value="Histologie">Histologie</option>
+                            <option value="Autre">Autre</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="upload-description">Description</label>
+                        <textarea id="upload-description" rows="3" placeholder="Décrivez brièvement le contenu..."></textarea>
+                    </div>
+
+                    <!-- PDF Upload -->
+                    <div id="pdf-upload" class="upload-type-section">
+                        <div class="form-group">
+                            <label for="upload-file">Fichier PDF *</label>
+                            <div class="file-upload" id="file-drop-zone">
+                                <input type="file" id="upload-file" accept=".pdf" onchange="handleFileSelect(event)">
+                                <div class="file-upload-content">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <p>Glissez-déposez un PDF ici ou cliquez pour sélectionner</p>
+                                    <span class="file-name" id="file-name"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Note Text -->
+                    <div id="note-upload" class="upload-type-section hidden">
+                        <div class="form-group">
+                            <label for="upload-content">Contenu de la note *</label>
+                            <textarea id="upload-content" rows="10" placeholder="Écrivez votre note ici..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="reset" class="btn btn-secondary" onclick="resetForm()">
+                            <i class="fas fa-undo"></i> Réinitialiser
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> Publier
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Success Message -->
+            <div id="upload-success" class="upload-success hidden">
+                <div class="success-card">
+                    <i class="fas fa-check-circle"></i>
+                    <h2>Document publié avec succès!</h2>
+                    <p>Votre document a été ajouté et est maintenant visible par les autres étudiants.</p>
+                    <div class="success-actions">
+                        <a href="notes.html" class="btn btn-primary">Voir les documents</a>
+                        <button onclick="resetUpload()" class="btn btn-secondary">Partager un autre</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4><i class="fas fa-dna"></i> PCPP</h4>
+                    <p>Physiologie Cellulaire et Physiopathologie<br>Plateforme collaborative pour étudiants en biologie moléculaire.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Liens Rapides</h4>
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="notes.html">Cours & Notes</a></li>
+                        <li><a href="upload.html">Partager</a></li>
+                        <li><a href="login.html">Connexion</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-envelope"></i> filaliucef@gmail.com</p>
+                    <p><i class="fas fa-university"></i> Université - Département Biologie</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 PCPP - Physiologie Cellulaire et Physiopathologie. Tous droits réservés.</p>
+                <p class="builder">Build by Youcef Filali</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

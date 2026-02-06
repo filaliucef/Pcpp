@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PCPP - Physiologie Cellulaire et Physiopathologie</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <i class="fas fa-dna"></i>
+                <span>PCPP</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link active">Accueil</a></li>
+                <li><a href="notes.html" class="nav-link">Cours & Notes</a></li>
+                <li><a href="upload.html" class="nav-link">Partager</a></li>
+                <li id="auth-links">
+                    <a href="login.html" class="nav-link btn-login">Connexion</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Physiologie Cellulaire et Physiopathologie</h1>
+            <p class="hero-subtitle">Plateforme collaborative d'apprentissage pour les étudiants en biologie moléculaire</p>
+            <div class="hero-buttons">
+                <a href="notes.html" class="btn btn-primary">
+                    <i class="fas fa-book-open"></i> Voir les Cours
+                </a>
+                <a href="upload.html" class="btn btn-secondary">
+                    <i class="fas fa-upload"></i> Partager un Document
+                </a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <i class="fas fa-microscope"></i>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Ce que vous pouvez faire</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <h3>Créer un Compte</h3>
+                    <p>Inscrivez-vous gratuitement pour accéder à tous les contenus et partager vos documents.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <h3>Partager des PDF</h3>
+                    <p>Téléchargez vos cours, notes et documents PDF pour aider d'autres étudiants.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Commenter</h3>
+                    <p>Posez des questions, répondez et discutez des cours avec vos camarades.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>Rechercher</h3>
+                    <p>Trouvez rapidement les documents dont vous avez besoin par matière ou mot-clé.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recent Notes Section -->
+    <section class="recent-notes">
+        <div class="container">
+            <h2 class="section-title">Documents Récents</h2>
+            <div id="recent-notes-grid" class="notes-grid">
+                <!-- Notes will be loaded here by JavaScript -->
+                <p class="loading-text">Chargement des documents...</p>
+            </div>
+            <div class="text-center">
+                <a href="notes.html" class="btn btn-outline">Voir Tous les Documents</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number" id="stat-users">0</span>
+                    <span class="stat-label">Étudiants</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="stat-notes">0</span>
+                    <span class="stat-label">Documents</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="stat-comments">0</span>
+                    <span class="stat-label">Commentaires</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4><i class="fas fa-dna"></i> PCPP</h4>
+                    <p>Physiologie Cellulaire et Physiopathologie<br>Plateforme collaborative pour étudiants en biologie moléculaire.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Liens Rapides</h4>
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="notes.html">Cours & Notes</a></li>
+                        <li><a href="upload.html">Partager</a></li>
+                        <li><a href="login.html">Connexion</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-envelope"></i> filaliucef@gmail.com</p>
+                    <p><i class="fas fa-university"></i> Université - Département Biologie</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 PCPP - Physiologie Cellulaire et Physiopathologie. Tous droits réservés.</p>
+                <p class="builder">Build by Youcef Filali</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

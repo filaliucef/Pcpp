@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion - PCPP</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <i class="fas fa-dna"></i>
+                <span>PCPP</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Accueil</a></li>
+                <li><a href="notes.html" class="nav-link">Cours & Notes</a></li>
+                <li><a href="upload.html" class="nav-link">Partager</a></li>
+                <li id="auth-links">
+                    <a href="login.html" class="nav-link btn-login active">Connexion</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Auth Section -->
+    <section class="auth-section">
+        <div class="container">
+            <div class="auth-container">
+                <!-- Login Form -->
+                <div class="auth-form" id="login-form">
+                    <h2><i class="fas fa-sign-in-alt"></i> Connexion</h2>
+                    <p class="auth-subtitle">Connectez-vous pour accéder à votre compte</p>
+                    
+                    <form onsubmit="handleLogin(event)">
+                        <div class="form-group">
+                            <label for="login-email">Email</label>
+                            <div class="input-icon">
+                                <i class="fas fa-envelope"></i>
+                                <input type="email" id="login-email" placeholder="votre@email.com" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="login-password">Mot de passe</label>
+                            <div class="input-icon">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="login-password" placeholder="••••••••" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-options">
+                            <label class="checkbox">
+                                <input type="checkbox" id="remember-me">
+                                <span>Se souvenir de moi</span>
+                            </label>
+                            <a href="#" class="forgot-password" onclick="showForgotPassword()">Mot de passe oublié?</a>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-full">
+                            <i class="fas fa-sign-in-alt"></i> Se Connecter
+                        </button>
+                    </form>
+                    
+                    <div class="auth-footer">
+                        <p>Pas encore de compte? <a href="#" onclick="showRegister()">S'inscrire</a></p>
+                    </div>
+                </div>
+
+                <!-- Register Form -->
+                <div class="auth-form hidden" id="register-form">
+                    <h2><i class="fas fa-user-plus"></i> Inscription</h2>
+                    <p class="auth-subtitle">Créez votre compte gratuitement</p>
+                    
+                    <form onsubmit="handleRegister(event)">
+                        <div class="form-group">
+                            <label for="register-name">Nom complet</label>
+                            <div class="input-icon">
+                                <i class="fas fa-user"></i>
+                                <input type="text" id="register-name" placeholder="Votre nom" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="register-email">Email</label>
+                            <div class="input-icon">
+                                <i class="fas fa-envelope"></i>
+                                <input type="email" id="register-email" placeholder="votre@email.com" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="register-password">Mot de passe</label>
+                            <div class="input-icon">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="register-password" placeholder="••••••••" required minlength="6">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="register-confirm">Confirmer le mot de passe</label>
+                            <div class="input-icon">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="register-confirm" placeholder="••••••••" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="register-level">Niveau d'études</label>
+                            <div class="input-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                                <select id="register-level" required>
+                                    <option value="">Sélectionnez votre niveau</option>
+                                    <option value="L1">Licence 1</option>
+                                    <option value="L2">Licence 2</option>
+                                    <option value="L3">Licence 3</option>
+                                    <option value="M1">Master 1</option>
+                                    <option value="M2">Master 2</option>
+                                    <option value="Doctorat">Doctorat</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-options">
+                            <label class="checkbox">
+                                <input type="checkbox" id="accept-terms" required>
+                                <span>J'accepte les <a href="#">conditions d'utilisation</a></span>
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-full">
+                            <i class="fas fa-user-plus"></i> S'inscrire
+                        </button>
+                    </form>
+                    
+                    <div class="auth-footer">
+                        <p>Déjà un compte? <a href="#" onclick="showLogin()">Se connecter</a></p>
+                    </div>
+                </div>
+
+                <!-- Forgot Password Form -->
+                <div class="auth-form hidden" id="forgot-form">
+                    <h2><i class="fas fa-key"></i> Mot de passe oublié</h2>
+                    <p class="auth-subtitle">Entrez votre email pour réinitialiser votre mot de passe</p>
+                    
+                    <form onsubmit="handleForgotPassword(event)">
+                        <div class="form-group">
+                            <label for="forgot-email">Email</label>
+                            <div class="input-icon">
+                                <i class="fas fa-envelope"></i>
+                                <input type="email" id="forgot-email" placeholder="votre@email.com" required>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-full">
+                            <i class="fas fa-paper-plane"></i> Envoyer
+                        </button>
+                    </form>
+                    
+                    <div class="auth-footer">
+                        <p><a href="#" onclick="showLogin()">Retour à la connexion</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4><i class="fas fa-dna"></i> PCPP</h4>
+                    <p>Physiologie Cellulaire et Physiopathologie<br>Plateforme collaborative pour étudiants en biologie moléculaire.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Liens Rapides</h4>
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="notes.html">Cours & Notes</a></li>
+                        <li><a href="upload.html">Partager</a></li>
+                        <li><a href="login.html">Connexion</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-envelope"></i> filaliucef@gmail.com</p>
+                    <p><i class="fas fa-university"></i> Université - Département Biologie</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 PCPP - Physiologie Cellulaire et Physiopathologie. Tous droits réservés.</p>
+                <p class="builder">Build by Youcef Filali</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

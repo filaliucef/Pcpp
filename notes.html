@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cours & Notes - PCPP</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <i class="fas fa-dna"></i>
+                <span>PCPP</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Accueil</a></li>
+                <li><a href="notes.html" class="nav-link active">Cours & Notes</a></li>
+                <li><a href="upload.html" class="nav-link">Partager</a></li>
+                <li id="auth-links">
+                    <a href="login.html" class="nav-link btn-login">Connexion</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Notes Section -->
+    <section class="notes-section">
+        <div class="container">
+            <h1 class="page-title"><i class="fas fa-book-open"></i> Cours & Notes</h1>
+            
+            <!-- Search & Filter -->
+            <div class="search-filter">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="search-input" placeholder="Rechercher un cours, une matière..." oninput="searchNotes()">
+                </div>
+                <div class="filter-box">
+                    <select id="filter-type" onchange="filterNotes()">
+                        <option value="">Tous les types</option>
+                        <option value="pdf">PDF</option>
+                        <option value="note">Note texte</option>
+                    </select>
+                    <select id="filter-matiere" onchange="filterNotes()">
+                        <option value="">Toutes les matières</option>
+                        <option value="Physiologie">Physiologie</option>
+                        <option value="Biochimie">Biochimie</option>
+                        <option value="Biologie Cellulaire">Biologie Cellulaire</option>
+                        <option value="Physiopathologie">Physiopathologie</option>
+                        <option value="Histologie">Histologie</option>
+                        <option value="Autre">Autre</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Notes Grid -->
+            <div id="notes-container" class="notes-grid">
+                <!-- Notes will be loaded here by JavaScript -->
+                <p class="loading-text">Chargement des documents...</p>
+            </div>
+
+            <!-- No Results -->
+            <div id="no-results" class="no-results hidden">
+                <i class="fas fa-search"></i>
+                <p>Aucun document trouvé</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Note Detail Modal -->
+    <div id="note-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">Titre du document</h2>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="note-meta">
+                    <span id="modal-author"><i class="fas fa-user"></i> Auteur</span>
+                    <span id="modal-date"><i class="fas fa-calendar"></i> Date</span>
+                    <span id="modal-matiere"><i class="fas fa-tag"></i> Matière</span>
+                </div>
+                <div id="modal-content" class="note-content">
+                    <!-- Content will be loaded here -->
+                </div>
+                <div id="modal-file" class="note-file hidden">
+                    <a href="#" id="modal-download" class="btn btn-primary" download>
+                        <i class="fas fa-download"></i> Télécharger le PDF
+                    </a>
+                </div>
+            </div>
+            <div class="modal-comments">
+                <h3><i class="fas fa-comments"></i> Commentaires</h3>
+                <div id="comments-list" class="comments-list">
+                    <!-- Comments will be loaded here -->
+                </div>
+                <div id="comment-form" class="comment-form hidden">
+                    <textarea id="comment-text" placeholder="Écrivez votre commentaire..." rows="3"></textarea>
+                    <button onclick="addComment()" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i> Commenter
+                    </button>
+                </div>
+                <div id="login-to-comment" class="login-to-comment">
+                    <p><a href="login.html">Connectez-vous</a> pour laisser un commentaire</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4><i class="fas fa-dna"></i> PCPP</h4>
+                    <p>Physiologie Cellulaire et Physiopathologie<br>Plateforme collaborative pour étudiants en biologie moléculaire.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Liens Rapides</h4>
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="notes.html">Cours & Notes</a></li>
+                        <li><a href="upload.html">Partager</a></li>
+                        <li><a href="login.html">Connexion</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-envelope"></i> filaliucef@gmail.com</p>
+                    <p><i class="fas fa-university"></i> Université - Département Biologie</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 PCPP - Physiologie Cellulaire et Physiopathologie. Tous droits réservés.</p>
+                <p class="builder">Build by Youcef Filali</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
