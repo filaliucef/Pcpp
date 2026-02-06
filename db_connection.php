@@ -1,16 +1,10 @@
 <?php
-$server = 'db40223.public.databaseasp.net';
-$user = 'db40223';
-$pass = 'iD-7K4c=n+8X';
-$db = 'db40223';
-
-$conn = new mysqli($server, $user, $pass, $db);
-
+$conn = new mysqli('db40223.public.databaseasp.net', 'db40223', 'iD-7K4c=n+8X', 'db40223', 3306);
 if ($conn->connect_error) {
- die("Connection failed: " . $conn->connect_error);
+ die("Error: " . $conn->connect_error);
 }
 echo "Connected!";
-?> 
+
 CREATE TABLE users (
  id INT AUTO_INCREMENT PRIMARY KEY,
  username VARCHAR(50),
