@@ -17,24 +17,37 @@ CREATE TABLE users (
  email VARCHAR(100),
  password VARCHAR(255)
 );
+session_start();
+$email = $_POST['email'];
+$pass = $_POST['password'];
+$sql = "SELECT * FROM users WHERE email=?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $email);
+$stmt->execute();
+$result = $stmt->get_result();
+$user = $result->fetch_assoc();
+
+if($user && password_verify($pass, $user['password'])) {
+ $_SESSION['user_id'] = $user['id'];
+ echo "Login OK!";
+} else {
+ echo "Error!";
+}
+$stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
+$stmt->bind_param("sss", $username, $email, $pass);
+$stmt->execute();
 // register.php
 $username = $_POST['username'];
 $email = $_POST['email'];
 $pass = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-$sql = "INSERT INTO users (username, email, password) VALUES ('$username', '$email', '$pass')";
-$conn->query($sql);
-// login.php
-$email = $_POST['email'];
-$pass = $_POST['password'];
+$stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
+$stmt->bind_param("sss", $username, $email, $pass);
 
-$sql = "SELECT * FROM users WHERE email='$email'";
-$result = $conn->query($sql);
-$user = $result->fetch_assoc();
-
-if(password_verify($pass, $user['password'])) {
- // Login OK
- $_SESSION['user_id'] = $user['id'];
+if($stmt->execute()) {
+ echo "Registered!";
+} else {
+ echo "Error: " . $stmt->error;
 }
 
 // upload.php
