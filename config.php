@@ -4,14 +4,14 @@
 // ============================================
 
 // Database credentials
-define('DB_HOST', 'db40223.public.databaseasp.net');
+define('DB_HOST', 'db40223.public.databaseasp.net:3306');
 define('DB_USER', 'db40223');
 define('DB_PASS', 'iD-7K4c=n+8X');
 define('DB_NAME', 'db40223');
 
 // Create database connection
 function getDBConnection() {
-    $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+    $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME, 3306);
     
     if ($conn->connect_error) {
         die(json_encode(['success' => false, 'message' => 'Connection failed: ' . $conn->connect_error]));
