@@ -4,7 +4,7 @@
 // ============================================
 
 // Database credentials
-define('DB_HOST', 'db40223.public.databaseasp.net:3306');
+define('DB_HOST', 'db40223.public.databaseasp.net');
 define('DB_USER', 'db40223');
 define('DB_PASS', 'iD-7K4c=n+8X');
 define('DB_NAME', 'db40223');
