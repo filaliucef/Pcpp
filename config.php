@@ -1,17 +1,27 @@
 <?php
-$server = 'db40223.databaseasp.net';
-$user = 'db40223';
-$pass = 'your_password_here';
-$db = 'db40223';
+// ============================================
+// PCPP - Database Configuration
+// ============================================
 
-// When running ON MonsterASP, this local connection should be allowed
-$conn = new mysqli($server, $user, $pass, $db, 3306);
+// Database credentials
+define('DB_HOST', 'db40223.databaseasp.net:3306'); // Changed to local address
+define('DB_USER', 'db40223');
+define('DB_PASS', 'iD-7K4c=n+8X');
+define('DB_NAME', 'db40223');
 
-if ($conn->connect_error) {
-    die("Local Connection failed: " . $conn->connect_error);
+// Create database connection
+function getDBConnection() {
+    $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+    
+    if ($conn->connect_error) {
+        die(json_encode(['success' => false, 'message' => 'Connection failed: ' . $conn->connect_error]));
+    }
+    
+    // Set charset to handle special characters
+    $conn->set_charset("utf8mb4");
+    
+    return $conn;
 }
-?>
-
 
 // Initialize database tables if they don't exist
 function initDatabase() {
@@ -68,9 +78,5 @@ function jsonResponse($data) {
     exit;
 }
 
-// Start session for user authentication
-session_start();
-
-// Initialize database on first run
+// Automatically create tables if they don't exist
 initDatabase();
-?>
